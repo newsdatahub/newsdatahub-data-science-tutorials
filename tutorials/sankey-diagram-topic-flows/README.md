@@ -28,7 +28,7 @@ pip install requests plotly kaleido
 2. Run the script:
 
 ```bash
-python sankey-diagram-news-sources-to-topic-flows_example.py
+python sankey-diagram.py
 ```
 
 3. Open the generated PNG file to view your diagram
