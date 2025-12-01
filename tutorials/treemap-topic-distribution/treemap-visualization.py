@@ -69,9 +69,12 @@ for article in articles:
 
 print(f"\nTotal topic mentions: {len(topics)}")
 
+# Exclude 'general' topic (articles not yet categorized)
+topics = [t for t in topics if t != 'general']
+
 # Count topic occurrences
 topic_counts = Counter(topics)
-print(f"Found {len(topic_counts)} unique topics")
+print(f"Found {len(topic_counts)} unique topics (excluding 'general')")
 
 # Get top 20 topics for visualization
 top_topics = dict(topic_counts.most_common(20))
