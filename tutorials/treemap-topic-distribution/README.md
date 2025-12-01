@@ -26,7 +26,7 @@ pip install requests matplotlib squarify
 3. Run the script:
 
 ```bash
-python treemap-visualization-topic-distribution-with-newsdatahub_example.py
+python treemap-visualization.py
 ```
 
 4. Check your directory for generated PNG files
