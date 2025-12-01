@@ -1,29 +1,66 @@
 import requests
 import matplotlib.pyplot as plt
 from collections import Counter
+import json
+import os
 
-NEWSDATAHUB_API_KEY = "your_api_key"
-url = "https://api.newsdatahub.com/v1/news"
-headers = {"x-api-key": NEWSDATAHUB_API_KEY}
+# Set your API key here (or leave empty to use sample data)
+API_KEY = ""  # Replace with your NewsDataHub API key, or leave empty
 
-# Fetch articles with pagination
-articles = []
-cursor = None
-for _ in range(2):
-    params = {"per_page": 100, "country": "US,FR,DE,ES,BR", "source_type": "mainstream_news,digital_native"}
-    if cursor:
-        params["cursor"] = cursor
+# Check if API key is provided
+if API_KEY and API_KEY != "your_api_key_here":
+    print("Using live API data...")
 
-    response = requests.get(url, headers=headers, params=params)
-    response.raise_for_status()
-    data = response.json()
+    url = "https://api.newsdatahub.com/v1/news"
+    headers = {"x-api-key": API_KEY}
 
-    articles.extend(data.get("data", []))
-    cursor = data.get("next_cursor")
-    if not cursor:
-        break
+    articles = []
+    cursor = None
 
-print(f"Fetched {len(articles)} articles")
+    # Fetch 2 pages (up to 200 articles)
+    for _ in range(2):
+        params = {"per_page": 100, "country": "US,FR,DE,ES,BR", "source_type": "mainstream_news,digital_native"}
+        if cursor:
+            params["cursor"] = cursor
+
+        response = requests.get(url, headers=headers, params=params)
+        response.raise_for_status()
+        data = response.json()
+
+        articles.extend(data.get("data", []))
+        cursor = data.get("next_cursor")
+        if not cursor:
+            break
+
+    print(f"Fetched {len(articles)} articles from API")
+
+else:
+    print("No API key provided. Loading sample data...")
+
+    # Download sample data if not already present
+    sample_file = "sample-news-data.json"
+
+    if not os.path.exists(sample_file):
+        print("Downloading sample data...")
+        sample_url = "https://raw.githubusercontent.com/newsdatahub/newsdatahub-data-science-tutorials/main/tutorials/bar-charts-news-data/data/sample-news-data.json"
+        response = requests.get(sample_url)
+        with open(sample_file, "w") as f:
+            json.dump(response.json(), f)
+        print(f"Sample data saved to {sample_file}")
+
+    # Load sample data
+    with open(sample_file, "r") as f:
+        data = json.load(f)
+
+    # Handle both formats: raw array or API response with 'data' key
+    if isinstance(data, dict) and "data" in data:
+        articles = data["data"]
+    elif isinstance(data, list):
+        articles = data
+    else:
+        raise ValueError("Unexpected sample data format")
+
+    print(f"Loaded {len(articles)} articles from sample data")
 
 # ============================================================================
 # 1. Topic Distribution
@@ -170,44 +207,44 @@ print("✓ Top sources chart saved")
 # ============================================================================
 # Uncomment this section if you have a paid NewsDataHub plan with political leaning access
 
-# leanings = [
-#     article.get("source", {}).get("political_leaning")
-#     for article in articles
-#     if article.get("source", {}).get("political_leaning")
-# ]
-# leaning_counts = Counter(leanings)
+leanings = [
+    article.get("source", {}).get("political_leaning")
+    for article in articles
+    if article.get("source", {}).get("political_leaning")
+]
+leaning_counts = Counter(leanings)
 
-# print(f"\nPolitical leaning: {len(leanings)} out of {len(articles)} articles have leaning data")
-# print(f"All leaning values found: {dict(leaning_counts)}")
+print(f"\nPolitical leaning: {len(leanings)} out of {len(articles)} articles have leaning data")
+print(f"All leaning values found: {dict(leaning_counts)}")
 
-# # Define order: left to right political spectrum + nonpartisan
-# # 'nonpartisan' represents unbiased wire services (AP, Reuters, AFP) and fact-based outlets
-# order = ['far_left', 'left', 'center_left', 'center', 'center_right', 'right', 'far_right', 'nonpartisan']
-# categories = [cat for cat in order if cat in leaning_counts]
-# values = [leaning_counts[cat] for cat in categories]
+# Define order: left to right political spectrum + nonpartisan
+# 'nonpartisan' represents unbiased wire services (AP, Reuters, AFP) and fact-based outlets
+order = ['far_left', 'left', 'center_left', 'center', 'center_right', 'right', 'far_right', 'nonpartisan']
+categories = [cat for cat in order if cat in leaning_counts]
+values = [leaning_counts[cat] for cat in categories]
 
-# print(f"Showing {sum(values)} articles across {len(categories)} categories (including nonpartisan)")
+print(f"Showing {sum(values)} articles across {len(categories)} categories (including nonpartisan)")
 
-# plt.figure(figsize=(12, 6))
-# colors = [vibrant_colors[i % len(vibrant_colors)] for i in range(len(categories))]
-# bars = plt.bar(categories, values, color=colors, edgecolor='white', linewidth=2)
+plt.figure(figsize=(12, 6))
+colors = [vibrant_colors[i % len(vibrant_colors)] for i in range(len(categories))]
+bars = plt.bar(categories, values, color=colors, edgecolor='white', linewidth=2)
 
-# plt.title('Political Leaning Distribution of News Sources (Including Nonpartisan)', fontsize=16, fontweight='bold', pad=20)
-# plt.xlabel('Political Leaning', fontsize=12, fontweight='bold')
-# plt.ylabel('Article Count', fontsize=12, fontweight='bold')
-# plt.xticks(fontsize=11)
-# plt.yticks(fontsize=11)
-# plt.grid(axis='y', alpha=0.3, linestyle='--')
+plt.title('Political Leaning Distribution of News Sources (Including Nonpartisan)', fontsize=16, fontweight='bold', pad=20)
+plt.xlabel('Political Leaning', fontsize=12, fontweight='bold')
+plt.ylabel('Article Count', fontsize=12, fontweight='bold')
+plt.xticks(fontsize=11)
+plt.yticks(fontsize=11)
+plt.grid(axis='y', alpha=0.3, linestyle='--')
 
-# # Add value labels
-# for bar in bars:
-#     height = bar.get_height()
-#     plt.text(bar.get_x() + bar.get_width()/2., height,
-#              f'{int(height)}', ha='center', va='bottom', fontsize=11, fontweight='bold')
+# Add value labels
+for bar in bars:
+    height = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2., height,
+             f'{int(height)}', ha='center', va='bottom', fontsize=11, fontweight='bold')
 
-# plt.tight_layout()
-# plt.savefig('political-leaning-chart.png', dpi=300, bbox_inches='tight')
-# print("✓ Political leaning chart saved")
+plt.tight_layout()
+plt.savefig('political-leaning-chart.png', dpi=300, bbox_inches='tight')
+print("✓ Political leaning chart saved")
 
 print("\nAll charts generated successfully!")
 print("Files created:")
