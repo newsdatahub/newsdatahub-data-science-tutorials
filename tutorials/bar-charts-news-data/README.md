@@ -57,13 +57,13 @@
   python bar_charts.py
   ```
 
-  Files
+  ## Files
 
   - bar-charts.ipynb — Interactive Jupyter notebook (recommended)
   - bar_charts.py — Standalone Python script
   - data/sample-news-data.json — Sample dataset (200 articles)
 
-  Output
+  ## Generated Output
 
   Generates 3-4 PNG files:
   - topic-distribution-chart.png
@@ -71,11 +71,11 @@
   - top-sources-chart.png
   - political-leaning-chart.png (if data available)
 
-  Full Tutorial
+  ## Tutorial
 
   Complete walkthrough with explanations: https://newsdatahub.com/learning-center/article/bar-charts-in-python-using-real-news-data
 
-  Resources
+  ## Resources
 
   - https://newsdatahub.com/docs
   - https://newsdatahub.com/login
