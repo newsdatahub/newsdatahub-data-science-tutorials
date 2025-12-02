@@ -1,37 +1,66 @@
 # Sankey Diagram: News Sources to Topic Flows
 
-Learn how to create beautiful static Sankey diagrams in Python using Plotly to visualize how news sources distribute their coverage across topics using real NewsDataHub API data.
+Learn how to create beautiful Sankey diagrams in Python using Plotly to visualize how news sources distribute their coverage across topics using real NewsDataHub API data.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/newsdatahub/newsdatahub-data-science-tutorials/blob/main/tutorials/sankey-diagram-topic-flows/sankey-diagram.ipynb)
 
 ## What You'll Build
 
 - **Source-to-topic flow visualization** — See how each news outlet distributes coverage across different topics
-- **Publication-ready images** — Generate high-resolution PNG files
+- **Interactive diagrams** — Hover over flows to see details in the notebook
+- **Publication-ready images** — Generate high-resolution PNG files with the Python script
 - **Professional styling** — Color-coded sources with clean, presentation-ready design
 - **Top 10 sources filter** — Focuses on most active sources for clarity
 
-## Prerequisites
-
-- Python 3.7+
-- NewsDataHub API key ([Get free key](https://newsdatahub.com/login))
-
-## Installation
-
-```bash
-pip install requests plotly kaleido
-```
-
-**Note:** `kaleido` is required for exporting static PNG images.
-
 ## Quick Start
 
-1. Replace the empty `API_KEY` variable in the script with your NewsDataHub API key, or leave it empty to use sample data
-2. Run the script:
+### Option 1: Jupyter Notebook (Interactive)
 
+**With sample data (no API key needed):**
 ```bash
+pip install requests plotly
+jupyter notebook sankey-diagram.ipynb
+# Leave API_KEY = "" to auto-download sample data from GitHub
+```
+
+**With live data:**
+```bash
+pip install requests plotly
+jupyter notebook sankey-diagram.ipynb
+# Set API_KEY = "your-key-here" in the notebook
+# Get free API key: https://newsdatahub.com/login
+```
+
+### Option 2: Python Script (Command Line)
+
+**With sample data (no API key needed):**
+```bash
+pip install requests plotly kaleido
+python sankey-diagram.py
+# Sample data auto-downloads from GitHub if not present
+```
+
+**With live data:**
+```bash
+pip install requests plotly kaleido
+# Edit sankey-diagram.py and set API_KEY = "your-key-here"
 python sankey-diagram.py
 ```
 
-3. Open the generated PNG file to view your diagram
+**Note:** `kaleido` is only required for the Python script to export PNG files.
+
+## Files
+
+- sankey-diagram.ipynb — Interactive Jupyter notebook (recommended)
+- sankey-diagram.py — Standalone Python script
+- sample-news-data.json — Sample dataset (auto-downloaded if needed)
+
+## Generated Output
+
+**Jupyter Notebook:** Interactive Sankey diagram displayed inline
+
+**Python Script:** Generates PNG file:
+- news_source_topic_sankey.png — High-resolution image (1200x700, 2x scale)
 
 ## Features
 
@@ -39,22 +68,17 @@ python sankey-diagram.py
 - **Multi-topic handling** — Properly processes NewsDataHub's array-based topic structure
 - **Custom labels** — Shows "Source → Topic: N articles" format
 - **Professional color scheme** — Bright, vibrant colors for both sources and topics with color-coded flows
-- **High-resolution output** — PNG files with 2x scale for retina displays
-
-## Generated Output
-
-The script generates:
-- `news_source_topic_sankey.png` — High-resolution raster image (1200x700, 2x scale)
+- **High-resolution output** — PNG files with 2x scale for retina displays (script only)
 
 ## Tutorial
 
-For the complete step-by-step tutorial with explanations, visit:
-[How to Create Sankey Diagrams to Visualize News Source-to-Topic Flows](https://newsdatahub.com/learning-center/article/sankey-diagram-news-sources-to-topic-flows)
+Complete walkthrough with explanations: https://newsdatahub.com/learning-center/article/sankey-diagram-news-sources-to-topic-flows
 
-## API Documentation
+## Resources
 
-- [NewsDataHub API Docs](https://newsdatahub.com/docs)
-- [API Plans & Pricing](https://newsdatahub.com/plans)
+- https://newsdatahub.com/docs
+- https://newsdatahub.com/login
+- https://newsdatahub.com/plans
 
 ## License
 
