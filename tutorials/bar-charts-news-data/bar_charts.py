@@ -203,9 +203,8 @@ plt.savefig("top-sources-chart.png", dpi=300, bbox_inches="tight")
 print("✓ Top sources chart saved")
 
 # ============================================================================
-# 4. Political Leaning (COMMENTED OUT - Requires paid plan)
+# 4. Political Leaning
 # ============================================================================
-# Uncomment this section if you have a paid NewsDataHub plan with political leaning access
 
 leanings = [
     article.get("source", {}).get("political_leaning")
@@ -251,4 +250,4 @@ print("Files created:")
 print("  - topic-distribution-chart.png")
 print("  - language-distribution-chart.png")
 print("  - top-sources-chart.png")
-print("  - political-leaning-chart.png (if uncommented)")
+print("  - political-leaning-chart.png")
