@@ -13,8 +13,8 @@ API_KEY = ""  # Replace with your NewsDataHub API key, or leave empty
 # Check if API key is provided
 if API_KEY and API_KEY != "your_api_key_here":
     print("Using live API data...")
-
-    url = "https://api.newsdatahub.com/v1/news"
+    # language=en would ensure we are getting articles in English
+    url = "https://api.newsdatahub.com/v1/news?language=en"
     headers = {"x-api-key": API_KEY}
     params = {"per_page": 100}
 
