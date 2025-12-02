@@ -94,10 +94,6 @@ top_topics = topic_counts.most_common(10)
 labels = [topic for topic, count in top_topics]
 values = [count for topic, count in top_topics]
 
-# Create scaled values for visual representation (square root scaling)
-# This reduces the dominance of very large values and creates better visual balance
-scaled_values = [np.sqrt(count) for count in values]
-
 print(f"Found {len(topic_counts)} unique topics (excluding 'general')")
 print(f"Displaying top 10 topics out of {len(topic_counts)} total")
 print(f"\nTop 10 topics:")
@@ -131,10 +127,10 @@ vibrant_colors = [
 # Calculate angles for each segment (in radians)
 angles = np.linspace(0, 2 * np.pi, num_topics, endpoint=False).tolist()
 
-# Create the polar area chart with scaled values for better visual balance
+# Create the polar area chart
 bars = ax.bar(
     angles,
-    scaled_values,
+    values,
     width=2*np.pi/num_topics,  # Width of each segment
     color=vibrant_colors[:num_topics],
     edgecolor='white',
@@ -147,7 +143,7 @@ ax.set_theta_zero_location('N')  # Start at top
 ax.set_theta_direction(-1)  # Clockwise direction
 ax.set_xticks(angles)
 ax.set_xticklabels(labels, fontsize=12, fontweight='600')
-ax.set_ylim(0, max(scaled_values) * 1.15)  # Add 15% padding for labels
+ax.set_ylim(0, max(values) * 1.15)  # Add 15% padding for labels
 
 # Style the radial grid
 ax.grid(True, color='gray', alpha=0.3, linestyle='--', linewidth=0.5)
@@ -163,14 +159,14 @@ ax.set_title(
     color='#1F2937'
 )
 
-# Add value labels on each segment (show actual counts, not scaled values)
+# Add value labels on each segment
 for angle, count, bar in zip(angles, values, bars):
     if count > 0:
-        height = bar.get_height()  # This is the scaled height
+        height = bar.get_height()
         ax.text(
             angle,
-            height + max(scaled_values) * 0.06,
-            str(count),  # Show actual count, not scaled value
+            height + max(values) * 0.06,
+            str(count),
             ha='center',
             va='bottom',
             fontsize=11,
@@ -186,16 +182,6 @@ fig.text(
     ha='center',
     fontsize=11,
     color='#6B7280'
-)
-
-# Add note explaining square root scaling for transparency
-fig.text(
-    0.5, 0.05,
-    'Note: Segment heights use square root scaling for visual balance',
-    ha='center',
-    fontsize=9,
-    style='italic',
-    color='#9CA3AF'
 )
 
 plt.tight_layout()
