@@ -6,6 +6,8 @@ Learn how to create beautiful Sankey diagrams in Python using Plotly to visualiz
 
 ## What You'll Build
 
+<img width="600" height="300" alt="news_source_topic_sankey" src="https://github.com/user-attachments/assets/b9fbb510-299f-4916-bcc7-57366a948d98" />
+
 - **Source-to-topic flow visualization** — See how each news outlet distributes coverage across different topics
 - **Interactive diagrams** — Hover over flows to see details in the notebook
 - **Publication-ready images** — Generate high-resolution PNG files with the Python script
