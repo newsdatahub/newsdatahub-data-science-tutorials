@@ -119,10 +119,8 @@ squarify.plot(
     sizes=sizes,
     label=labels,
     color=colors[:len(labels)],
-    alpha=0.8,
     text_kwargs={'fontsize': 11, 'weight': 'bold', 'color': 'white'},
-    edgecolor='white',
-    linewidth=3
+    bar_kwargs={'edgecolor': 'white', 'linewidth': 3, 'alpha': 0.8}
 )
 
 # Style the chart
@@ -146,10 +144,8 @@ squarify.plot(
     sizes=sizes,
     label=labels_with_counts,
     color=colors[:len(labels)],
-    alpha=0.8,
     text_kwargs={'fontsize': 10, 'weight': 'bold', 'color': 'white'},
-    edgecolor='white',
-    linewidth=3
+    bar_kwargs={'edgecolor': 'white', 'linewidth': 3, 'alpha': 0.8}
 )
 
 plt.title('Topic Distribution in Current News Coverage (with counts)',
