@@ -4,6 +4,7 @@ Learn how to create a circular "news wheel" visualization using Python's polar a
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/newsdatahub/newsdatahub-data-science-tutorials/blob/main/tutorials/circular-news-wheel/circular-news-wheel.ipynb)
 
 ## What You'll Build
+<img width="400" height="400" alt="topic_distribution_wheel" src="https://github.com/user-attachments/assets/9a1a5575-ce9a-41bc-91c3-b089d10989bb" />
 
 - **Polar area chart** — Circular visualization showing topic distribution
 - **Topic aggregation** — Extract and count topics from news articles
