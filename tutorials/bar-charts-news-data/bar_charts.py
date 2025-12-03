@@ -158,19 +158,10 @@ print("✓ Language distribution chart saved")
 # ============================================================================
 # 3. Top 10 Sources
 # ============================================================================
-# Extract source titles - check both 'source.title' and 'source_title'
+# Extract source titles from article level
 sources = []
 for article in articles:
-    source = article.get("source", {})
-    if isinstance(source, dict):
-        source_title = source.get("title") or source.get("name")
-    else:
-        source_title = None
-
-    # Also check for source_title at article level
-    if not source_title:
-        source_title = article.get("source_title")
-
+    source_title = article.get("source_title")
     if source_title:
         sources.append(source_title)
 
