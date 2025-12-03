@@ -6,8 +6,8 @@ Learn how to create professional chord diagrams in Python using Matplotlib to vi
 ## What You'll Build
 
 - **Topic co-occurrence chord diagram**
-
-  <img width="600" height="600" alt="topic-cooccurrence-chord-diagram" src="https://github.com/user-attachments/assets/YOUR_IMAGE_ID_HERE" />
+  
+<img width="400" height="400" alt="topic_cooccurrence_chord" src="https://github.com/user-attachments/assets/b54f0a55-c899-404a-92d8-3b27bfe6c902" />
 
 ## Quick Start
 
