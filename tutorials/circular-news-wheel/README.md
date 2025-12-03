@@ -1,6 +1,7 @@
 # Circular News Wheel: Topic Distribution Using Polar Charts
 
 Learn how to create a circular "news wheel" visualization using Python's polar area charts to display news topic distribution from NewsDataHub API.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/newsdatahub/newsdatahub-data-science-tutorials/blob/main/tutorials/circular-news-wheel/circular-news-wheel.ipynb)
 
 ## What You'll Build
 
@@ -9,53 +10,61 @@ Learn how to create a circular "news wheel" visualization using Python's polar a
 - **Professional styling** — Vibrant colors and clear labels
 - **Top 10 filtering** — Display most popular topics without clutter
 
-## Prerequisites
-
-- Python 3.7+
-- NewsDataHub API key ([Get free key](https://newsdatahub.com/login))
-
-## Installation
-
-```bash
-pip install requests matplotlib numpy
-```
-
 ## Quick Start
 
-1. Clone this repository or download the script
-2. Replace `your_api_key_here` in the script with your NewsDataHub API key (or leave empty to use sample data)
-3. Run the script:
+### Option 1: Jupyter Notebook (Interactive)
 
+**With sample data (no API key needed):**
 ```bash
+pip install requests matplotlib numpy
+jupyter notebook circular-news-wheel.ipynb
+# Leave API_KEY = "" to auto-download sample data from GitHub
+```
+
+**With live data:**
+```bash
+pip install requests matplotlib numpy
+jupyter notebook circular-news-wheel.ipynb
+# Set API_KEY = "your-key-here" in the notebook
+# Get free API key: https://newsdatahub.com/login
+```
+
+### Option 2: Python Script (Command Line)
+
+**With sample data (no API key needed):**
+```bash
+pip install requests matplotlib numpy
+python circular-news-wheel.py
+# Sample data auto-downloads from GitHub if not present
+```
+
+**With live data:**
+```bash
+pip install requests matplotlib numpy
+# Edit circular-news-wheel.py and set API_KEY = "your-key-here"
 python circular-news-wheel.py
 ```
 
-4. Check your directory for `topic_distribution_wheel.png`
+## Files
 
-## Features
-
-- **Polar coordinate visualization** — Circular chart with radial segments
-- **Top 10 topic filtering** — Prevents chart clutter from rare topics
-- **Vibrant color palette** — Professional, high-contrast colors optimized for data visualization
-- **Value labels on segments** — Shows exact counts for easy reading
-- **High-resolution export** — 300 DPI chart ready for reports and presentations
-- **Sample data fallback** — Works without API key using sample data
+- circular-news-wheel.ipynb — Interactive Jupyter notebook (recommended)
+- circular-news-wheel.py — Standalone Python script
 
 ## Generated Output
 
-The script generates:
-- `topic_distribution_wheel.png` — Circular visualization of top 10 news topics
+Generates PNG file:
+- topic_distribution_wheel.png
 
 ## Tutorial
 
-For the complete step-by-step tutorial, visit:
-[How to Create a Circular "News Wheel" with Python](https://newsdatahub.com/learning-center/article/circular-news-wheel-topic-distribution)
+Complete walkthrough with explanations: https://newsdatahub.com/learning-center/article/circular-news-wheel-topic-distribution
 
-## API Documentation
+## Resources
 
-- [NewsDataHub API Docs](https://newsdatahub.com/docs)
-- [API Plans & Pricing](https://newsdatahub.com/plans)
+- https://newsdatahub.com/docs
+- https://newsdatahub.com/login
+- https://newsdatahub.com/plans
 
-## License
+License
 
 MIT
