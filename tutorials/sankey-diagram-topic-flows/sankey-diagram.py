@@ -58,15 +58,8 @@ else:
 flows = defaultdict(int)
 
 for article in articles:
-    # Get source name - check both top-level and nested source fields
-    # The API returns source_title at top level, and nested source object
+    # Get source name from article level
     source_name = article.get("source_title")
-
-    if not source_name:
-        # Fallback: check nested source object
-        source_obj = article.get("source", {})
-        if isinstance(source_obj, dict):
-            source_name = source_obj.get("title") or source_obj.get("name")
 
     # Get topics - NewsDataHub returns topics as array
     article_topics = article.get("topics", [])
