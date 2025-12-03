@@ -3,6 +3,8 @@
 Learn how to create professional treemap visualizations in Python using Squarify and real news data from the NewsDataHub API.
 
 ## What You'll Build
+<img width="600" height="450" alt="topic-distribution-treemap" src="https://github.com/user-attachments/assets/0ba1d34a-ef5a-4b2a-926b-d927b8cd81eb" />
+
 
 - **Topic distribution treemap** — Visualize the top 20 most popular topics in news coverage
 - **Enhanced treemap with counts** — Display both topic names and article counts
